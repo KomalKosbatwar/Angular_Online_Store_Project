@@ -1,0 +1,31 @@
+/* Global Styles */
+
+
+  .cartCnt{
+    margin-top: -10px;
+    position: fixed;
+    border-color: black;
+    border-radius: 20px;
+    background-color: #1976d2;
+    color:white;
+    margin-left: -11px;
+  }
+  .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 70%;
+}
+
+
+  /* Checkout Cart, Shipping Prices */
+  
+  
+  
+
+  /*
+  Copyright Google LLC. All Rights Reserved.
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file at http://angular.io/license
+  */

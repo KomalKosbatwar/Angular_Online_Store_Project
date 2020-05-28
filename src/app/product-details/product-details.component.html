@@ -1,0 +1,15 @@
+
+<div class="container">
+<div *ngIf="product" style="padding: 20px;">
+   <h1>Product Details: {{product.name}}</h1> 
+    <div class="container1">
+        <img src="assets/img/{{product.img}}" alt="{{product.name}}" style="width:230px">
+        <div class="overlay">{{product.name}}</div>
+       
+    </div>
+    
+    
+    <h5>{{product.description}}</h5>
+    <h3>{{product.price}}</h3>
+    <button (click)="addToCart(product)">Buy</button>
+</div></div>
