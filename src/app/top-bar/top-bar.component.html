@@ -1,19 +1,11 @@
 
-
 <a [routerLink]="['/']">
   <h1>My Store</h1>
 
 </a>
-
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">@</span>
-  </div>
-  
-  <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
-  
+<div class="input-group"> 
+<app-search style="width: 100%"></app-search>  
 </div>
-  
 <a class="button fancy-button" routerLink="/cart">
 
   <span>

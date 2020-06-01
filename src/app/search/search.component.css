@@ -1,0 +1,12 @@
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 70%;
+}
+.form-control
+{
+    width: 70%;
+
+}

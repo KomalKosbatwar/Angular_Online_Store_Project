@@ -13,6 +13,7 @@ import { CartService } from '../app/cart.service';
 import { CartComponent } from './cart/cart.component';
 import{ HttpClientModule } from '@angular/common/http';
 import { ShippingComponent } from './shipping/shipping.component';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { ShippingComponent } from './shipping/shipping.component';
     ProductDetailsComponent,
     CartComponent,
     ShippingComponent,
+    SearchComponent,
     //CartService
   ],
   imports: [
