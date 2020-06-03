@@ -3,9 +3,10 @@
 <p>
     <a routerLink="/shipping">Shipping Prices</a>
   </p>
-  {{itemsCnt}}
+  
 <div class="cart-item" *ngFor="let item of items">
-
+  
+  <img src="assets/img/{{item.img}}" alt="{{item.name}}" style="width:230px">
     <span>{{item.name}}</span>
     <span>{{item.price}}</span>
 </div>

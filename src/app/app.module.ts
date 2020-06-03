@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 import{ HttpClientModule } from '@angular/common/http';
 import { ShippingComponent } from './shipping/shipping.component';
 import { SearchComponent } from './search/search.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { SearchComponent } from './search/search.component';
     ProductDetailsComponent,
     CartComponent,
     ShippingComponent,
-    SearchComponent,
+    SearchComponent
     //CartService
   ],
   imports: [
@@ -37,7 +38,8 @@ import { SearchComponent } from './search/search.component';
       { path :'cart',component:CartComponent},
       { path:'shipping' , component:ShippingComponent}
 
-    ])
+    ]),
+    
   ],
   entryComponents: [ProductListComponent],
   providers: [],
