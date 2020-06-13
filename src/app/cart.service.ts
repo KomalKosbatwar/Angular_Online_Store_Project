@@ -8,30 +8,65 @@ import { products } from './products';
 })
 export class CartService {
     products = products;
-    private subject = new Subject<any>();
+    private itmCnt = new Subject<any>();
+    private totalPrice = new Subject<any>();
+    private getItm = new Subject<any>();
     private searchSubject = new Subject<any>();
     items = [];
-    itemsCnt = 0;
-
     //newArray=[];
     constructor(
         private http: HttpClient,
     ) { }
 
     addToCart(product) {
-        this.items.push(product);
-        this.itemsCnt = this.items.length;
-        this.sendMessage();
+        const { productId } = product;
+
+        if (this.items.some(val => val.productId === product.productId)) {
+            const i = this.items.map((item) => { return item.productId }).indexOf(productId);
+            //  console.log("i", i);
+            this.items[i].quantity = Number(this.items[i].quantity + 1);
+
+        } else {
+            this.items.push({ ...product, quantity: 1 });
+
+        }
+        this.updateCart();
+    }
+    updateCartQty(productId,quantity)
+    {
+        if (this.items.some(val => val.productId === productId)) {
+            const i = this.items.map((item) => { return item.productId }).indexOf(productId);
+            //  console.log("i", i);
+            this.items[i].quantity = Number(quantity);
+
+        } 
+        this.updateCart();
     }
     getItems() {
         return this.items;
     }
-    sendMessage() {
-        this.subject.next({ itemsCnt: this.itemsCnt });
+    getTemItems() {
+        return this.items;
+    }
+    updateCart() {
+        let quantity = 0;
+        this.items.map((item) => {
+            //  console.log("itm",quantity,item);
+            quantity = quantity + item.quantity;
+            // return quantity;
+        });
+
+        this.itmCnt.next({ itemsCnt: quantity });
+    }
+    getTotalPrice(): Observable<any> {
+        return this.totalPrice.asObservable();
     }
     getItemsCount(): Observable<any> {
-        return this.subject.asObservable();
+        return this.itmCnt.asObservable();
 
+    }
+    getCartItems(): Observable<any> {
+        return this.getItm.asObservable();
     }
 
     ClearCart() {
@@ -45,7 +80,7 @@ export class CartService {
         return this.searchSubject.asObservable();
     }
     getAllProductList() {
-      return this.products;
+        return this.products;
     }
     searchItems(searchValue) {
 
@@ -53,7 +88,18 @@ export class CartService {
             (val) => val['name'].includes(searchValue))
         //Searched Data
         this.searchSubject.next({ products: searchData });
-       // console.log(searchData)
+        // console.log(searchData)
+    }
+    deleteItems(productId: number) {
+
+        // const index = this.items.indexOf({ productId })
+        const i = this.items.map((item) => { return item.productId }).indexOf(productId);
+        if (i !== -1) {
+            this.items.splice(i, 1);
+        }
+        this.updateCart();
+        this.getItm.next({ cartItems: this.items });
+
     }
 
 }

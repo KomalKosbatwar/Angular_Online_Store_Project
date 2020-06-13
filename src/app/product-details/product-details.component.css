@@ -33,4 +33,17 @@
 .container1:hover .overlay {
   opacity: 1;
 }
-
+.card
+{
+  height: 182px !important;
+  
+}
+.btn
+{
+  width: 100%;
+  background-color: #1976d2;
+}
+.txtred
+{
+  color:red;
+}

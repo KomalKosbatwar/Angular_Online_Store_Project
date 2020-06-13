@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./products-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+    currentRate=8;
     subscription: Subscription;
     products;
     product;

@@ -1,15 +1,29 @@
-<p>cart</p>
-
+<!-- 
 <p>
     <a routerLink="/shipping">Shipping Prices</a>
-  </p>
-  
-<div class="cart-item" *ngFor="let item of items">
-  
-  <img src="assets/img/{{item.img}}" alt="{{item.name}}" style="width:230px">
-    <span>{{item.name}}</span>
-    <span>{{item.price}}</span>
+  </p> -->
+<!--   
+<div *ngFor="let item of items">
+ 
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-3">
+      <img src="assets/img/{{item.img}}" alt="{{item.name}}" style="width:200px">
+
+    </div>
+    <div class="col-sm-5">
+      <span>{{item.name}}</span>
+      <br>
+      <span>{{item.price}}</span>
+      <br><br>
+      <a>Delete</a> &nbsp; | &nbsp; <a>Save For Later</a>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+   
+    <hr>
 </div>
+SubTotal ({{itemsCnt}}): {{sum}}
 
 <form [formGroup]="checkOutForm" (ngSubmit)="onSubmit(checkOutForm.value)">
   <div>
@@ -24,5 +38,58 @@ Address
     </label>
     <input id="address" type="text" formControlName="address">
   </div>
-  <button class="button" type="submit">Purchase</button>
-</form>
+  <button class="button" type="submit">Proceed to Buy</button>
+</form> -->
+<div class="container">
+  <div class="col-md-9">
+    <h2><b> Shopping Cart</b></h2>
+    <div *ngIf="sum == 0">
+      <h2><b> Your Shopping Cart is empty.</b></h2>
+
+    </div>
+    <div *ngFor="let item of items" style="padding: 20px;">
+      <!-- <h1>Product Details: {{product.name}}</h1> -->
+      <div class=" row">
+        <div class="col-md-4">
+          <img src="assets/img/{{item.img}}" alt="{{item.name}}" style="width:200px">
+        </div>
+
+        <div class="col-md-8">
+          <span>{{item.name}}</span>
+          <br>
+          Rs.<span>{{item.price}}</span><br>
+          <span>In stock</span>
+          <br>
+
+          <div> Qty :
+            <select (change)="modelChanged($event,item.productId)" [(ngModel)]="item.quantity">
+              <option *ngFor="let i of total" [value]="i" >
+                {{i}}
+              </option>
+            </select>
+          </div>
+          <!-- <input type="number" min="0" onchange="modelChanged($event)"/> -->
+
+          <br><br>
+          <button class="pull-right btn btn-sm btn-warning" (click)="deleteItem(item.productId)">Remove
+          </button>
+          &nbsp; | &nbsp; <a>Save For Later</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div *ngIf="sum > 0">
+      <div class="card">
+        <div class="card-body">
+          <p>SubTotal: {{sum | currency:'IND'}}</p>
+          <button>Proceed to pay</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

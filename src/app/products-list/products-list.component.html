@@ -1,30 +1,14 @@
-<!-- <div class="container">
-  
-    <input class="form-control mr-sm-2" type="search" placeholder="Search musical instrument" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  
 
-</div> -->
+
+ 
+ 
 <div class="container">
 
-  <div class="row column">
-
-
-    <!-- <div *ngFor="let product of products; index as productId" class="col-md-3">
-    <div class="">
-      <div class="">
-        <img src="assets/img/{{product.img}}" alt="{{product.name}}" style="width: 300px;
-        height: 272px;">
-      </div>
-      <h3>
-        <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
-          {{ product.name }}
-        </a>
-      </h3>
+  <div class="row column ">
+    <div class="input-group">
+      <app-search style="width: 100%"></app-search>
     </div>
     
-  </div> -->
-
     <div class="card col-md-3"
       style="margin:10px;padding-right: 0px!important;padding-left: 0px!important; flex: 0 0 23%!important;"
       *ngFor="let product of products; index as productId">
@@ -32,22 +16,29 @@
       <div class="card-body">
 
         <h5 class="card-title">{{ product.name }}</h5>
+        <ngb-rating [(rate)]="currentRate"></ngb-rating>
         <div class="container1">
 
-          <p class="card-text">{{ product.short}}</p>
+          <span class="card-text" style="font-size: 14px;">{{ product.price | currency:'IND'}}</span>&nbsp;
+          <s style="font-size: 12px;">{{ product.MRP | currency:'IND'}}</s> <br>
+          <span style="font-size: 12px;">Save: {{product.MRP - product.price | currency:'IND'}}</span>
 
 
-          <p>
-            <a [title]="product.name + ' details'" [routerLink]="['/products', productId]" class="button">
-              View details
-            </a> </p>
-          <p> <a (click)="addToCart(product)" class="button" style="padding-left: 10px;">Add To Cart</a>
-          </p>
+        
+     
 
         </div>
 
+      </div>
+      <div class="card-footer">
+        <p>
+            <a [title]="product.name + ' details'" [routerLink]="['/products', productId]" class="button">
+              View details
+            </a> </p>
+          <p> <a (click)="addToCart(product)" class="button" style="padding-left: 10px;">Add To Cart</a>     </p>
       </div>
     </div>
 
   </div>
 </div>
+
